@@ -29,6 +29,7 @@ module "tf_ecs_container_definition_test" {
   application_secrets = var.application_secrets
   platform_secrets    = var.platform_secrets
   extra_hosts         = var.extra_hosts
+  health_check        = var.health_check
 }
 
 variable "name" {}
@@ -62,7 +63,9 @@ variable "cpu" { default = "64" }
 variable "command" { default = [] }
 
 variable "extra_hosts" { default = []}
-  
+
+variable "health_check" { default = []}
+
 output "rendered" {
   value = module.tf_ecs_container_definition_test.rendered
 }
