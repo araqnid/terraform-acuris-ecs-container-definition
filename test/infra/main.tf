@@ -64,7 +64,16 @@ variable "command" { default = [] }
 
 variable "extra_hosts" { default = []}
 
-variable "health_check" { default = []}
+variable "health_check" {
+  type = object({ command: list(string), interval: number, timeout: number, retries: number, startPeriod: number })
+  default = {
+    command = []
+    interval = 30
+    timeout = 5
+    retries = 3
+    startPeriod = 0
+  }
+}
 
 output "rendered" {
   value = module.tf_ecs_container_definition_test.rendered
